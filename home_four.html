@@ -54,7 +54,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 /* ---------- image slots: a real image (if set) covers the drawn fallback ---------- */
 [data-slot] { position: relative; }
 .slot-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 0; }
-[data-slot].has-img > .scene-svg, [data-slot].has-img > .fb { display: none; }
+[data-slot].has-img > .scene-svg, [data-slot].has-img > .fb { display: none !important; }
 .logo .slot-img, .wa-slot .slot-img, .logo-mark .slot-img { position: static; width: auto; height: 100%; object-fit: contain; }
 
 /* scenes */
