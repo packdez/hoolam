@@ -192,40 +192,29 @@ header.open #menu-btn .bars { display: none; }
 /* ---------- JOURNEY: sticky stepper ---------- */
 .journey-intro { display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; max-width: 720px; }
 .journey-intro h2 span { color: var(--teal); }
-.stepper { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--bar-h) + 6px); z-index: 30; margin-bottom: 24px; }
-.stepper-in { background: color-mix(in srgb, var(--card) 94%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 22px; box-shadow: var(--shadow); padding: 12px clamp(12px, 2vw, 20px); display: flex; align-items: center; gap: 12px 24px; flex-wrap: wrap; }
-.steps-row { list-style: none; margin: 0; padding: 0; flex: 1 1 420px; display: flex; justify-content: space-between; position: relative; --p: 0; min-width: 0; }
-.steps-row::before, .steps-row::after { content: ""; position: absolute; left: 20px; top: 20px; height: 3px; border-radius: 3px; transform: translateY(-50%); }
-.steps-row::before { right: 20px; background: var(--rule); }
-.steps-row::after { width: calc((100% - 40px) * var(--p)); background: var(--teal); transition: width .7s var(--ease); }
-.steps-row li { position: relative; z-index: 1; display: flex; }
-.steps-row button { border: 0; background: none; padding: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; -webkit-tap-highlight-color: transparent; }
-.sdot { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--card); color: var(--soft); box-shadow: inset 0 0 0 2px var(--rule); transition: all .45s var(--ease); }
-.sdot .ic { width: 18px; height: 18px; }
-.sname { font-size: .74rem; font-weight: 600; color: var(--soft); transition: color .3s; white-space: nowrap; }
-.steps-row .done .sdot { background: var(--teal-tint); color: var(--teal); box-shadow: none; }
-.steps-row .now .sdot { background: var(--teal); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--teal) 18%, transparent); transform: scale(1.08); }
-:root[data-theme="dark"] .steps-row .now .sdot { color: #0b1f1f; }
-.steps-row .now .sname { color: var(--ink); }
-.money { display: flex; align-items: center; gap: 10px; padding: 9px 14px 9px 10px; border-radius: 16px; background: var(--gold-tint); flex: 0 1 auto; min-width: 0; transition: background .4s; }
-.money .coin { width: 26px; height: 26px; border-radius: 50%; flex: none; background: radial-gradient(circle at 35% 30%, #F2D27A, #C9992E 60%, #9C7520); box-shadow: inset 0 0 0 3px rgba(255,255,255,.35); }
-.money small { display: block; font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
-.money b { display: block; font: 600 .98rem/1.25 var(--font-display); }
-.money.paid { background: var(--green-tint); }
-.money.paid .coin { background: radial-gradient(circle at 35% 30%, #8FD9AE, #2E8B57 65%); }
-.money.out { background: var(--bg); }
+
+.tracker { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--bar-h) + 6px); z-index: 30; margin-bottom: 24px; }
+.tracker-in { background: color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 22px; box-shadow: var(--shadow); padding: 14px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 22px; align-items: center; }
+.tracker-q { font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.tracker-s { font: 600 1.02rem var(--font-display); letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; min-height: 1.5em; }
+.tracker.paid .tracker-s .pulse { background: var(--green); }
+.track { grid-column: 2; grid-row: 1 / span 2; position: relative; height: 44px; --pos: 0; }
+.track-line { position: absolute; left: 22px; right: 22px; top: 50%; height: 4px; border-radius: 4px; transform: translateY(-50%); background: var(--rule); overflow: hidden; }
+.track-line i { position: absolute; inset: 0 auto 0 0; width: calc(var(--pos) * 100%); background: var(--teal); border-radius: 4px; transition: width .8s var(--ease); }
+.stop { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border-radius: 13px; background: var(--card); box-shadow: inset 0 0 0 1.5px var(--rule); display: grid; place-items: center; color: var(--soft); transition: color .4s, background .4s; }
+.stop svg { width: 20px; height: 20px; }
+.stop.s0 { left: 22px; } .stop.s1 { left: 50%; } .stop.s2 { left: calc(100% - 22px); }
+.stop.lit { color: var(--teal); background: var(--teal-tint); box-shadow: none; }
+.coin { position: absolute; top: 50%; left: calc(22px + var(--pos) * (100% - 44px)); width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #F2D27A, #C9992E 60%, #9C7520); box-shadow: 0 6px 14px -4px rgba(150,110,20,.6), inset 0 0 0 3px rgba(255,255,255,.35); transition: left .8s var(--ease); z-index: 2; }
+.tracker.paid .track-line i { background: var(--green); }
+.tracker.paid .stop.s2 { color: var(--green); background: var(--green-tint); }
 @media (max-width: 640px) {
-  .stepper-in { padding: 10px 12px; gap: 10px; border-radius: 18px; }
-  .steps-row { flex-basis: 100%; }
-  .sdot { width: 34px; height: 34px; }
-  .steps-row::before, .steps-row::after { top: 17px; left: 17px; }
-  .steps-row::before { right: 17px; }
-  .steps-row::after { width: calc((100% - 34px) * var(--p)); }
-  .sname { font-size: .68rem; }
-  .steps-row li:not(.now) .sname { opacity: 0; }
-  .money { flex-basis: 100%; padding: 7px 12px 7px 8px; }
-  .money .coin { width: 22px; height: 22px; }
+  .tracker-in { grid-template-columns: 1fr; padding: 12px 14px; border-radius: 18px; }
+  .track { grid-column: 1; grid-row: auto; }
+  .tracker-q { display: none; }
+  .tracker-s { font-size: .95rem; }
 }
+   
 
 /* chapters */
 .chapter { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(22px, 5vw, 72px); align-items: center; border-radius: clamp(26px, 4vw, 44px); padding: clamp(14px, 3vw, 36px); margin-bottom: 20px; scroll-margin-top: calc(var(--bar-h) + 120px); }
@@ -538,18 +527,20 @@ footer { padding-block: 30px 40px; border-top: 1px solid var(--rule); }
       <h2>See where your money is, <span>at every step.</span></h2>
     </div>
 
-    <div class="stepper" id="stepper">
-      <div class="stepper-in">
-        <ol class="steps-row" id="steps-row" aria-label="Steps">
-          <li class="now"><button type="button" data-go="0" aria-label="Step 1: Agree"><span class="sdot"><svg class="ic " aria-hidden="true"><use href="#i-mic"/></svg></span><span class="sname">Agree</span></button></li>
-          <li><button type="button" data-go="1" aria-label="Step 2: Pay"><span class="sdot"><svg class="ic " aria-hidden="true"><use href="#i-wallet"/></svg></span><span class="sname">Pay</span></button></li>
-          <li><button type="button" data-go="2" aria-label="Step 3: Ship"><span class="sdot"><svg class="ic " aria-hidden="true"><use href="#i-package"/></svg></span><span class="sname">Ship</span></button></li>
-          <li><button type="button" data-go="3" aria-label="Step 4: Check"><span class="sdot"><svg class="ic " aria-hidden="true"><use href="#i-door-open"/></svg></span><span class="sname">Check</span></button></li>
-          <li><button type="button" data-go="4" aria-label="Step 5: Paid"><span class="sdot"><svg class="ic " aria-hidden="true"><use href="#i-circle-check"/></svg></span><span class="sname">Paid</span></button></li>
-        </ol>
-        <div class="money out" id="money" aria-live="polite"><span class="coin"></span><span><small>Your money</small><b id="money-t">Still with the buyer</b></span></div>
+      <div class="tracker" id="tracker" aria-live="polite">
+      <div class="tracker-in">
+        <span class="tracker-q">Where’s the money?</span>
+        <div class="track" id="track" style="--pos:0">
+          <div class="track-line"><i></i></div>
+          <span class="stop s0 lit" title="Buyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <span class="stop s1" title="Held by Hoolam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg></span>
+          <span class="stop s2" title="Seller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+          <span class="coin"></span>
+        </div>
+        <span class="tracker-s"><span class="pulse"></span><span id="tracker-t">Still with the buyer</span></span>
       </div>
     </div>
+ 
 
     <!-- 1 -->
     <article class="chapter c-sand" id="step-1" data-ch="0">
@@ -944,11 +935,8 @@ var HOOLAM_IMAGES = {
     });
   });
 
-  /* stepper: jump to a step */
   var chapters = [].slice.call(document.querySelectorAll('.chapter'));
-  document.querySelectorAll('[data-go]').forEach(function (b) {
-    b.addEventListener('click', function () { chapters[+b.getAttribute('data-go')].scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-  });
+
 
   if (!('IntersectionObserver' in window)) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -957,27 +945,29 @@ var HOOLAM_IMAGES = {
     document.querySelectorAll('.rv').forEach(function (el) { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pre'); io.observe(el); } });
   }
 
+   
   /* where is the money? */
   var states = [
-    { t: 'Still with the buyer', cls: 'out' },
-    { t: 'Held safely by Hoolam', cls: '' },
-    { t: 'Held safely. Package on its way', cls: '' },
-    { t: 'Held until the buyer is happy', cls: '' },
-    { t: 'Paid to the seller', cls: 'paid' }
+    { pos: 0, lit: 0, t: 'Still with the buyer' },
+    { pos: .5, lit: 1, t: 'Held safely by Hoolam' },
+    { pos: .5, lit: 1, t: 'Held safely. Package on its way' },
+    { pos: .5, lit: 1, t: 'Held until the buyer is happy' },
+    { pos: 1, lit: 2, t: 'Paid to the seller', paid: true }
   ];
-  var row = document.getElementById('steps-row'), lis = [].slice.call(row.children);
-  var money = document.getElementById('money'), mt = document.getElementById('money-t');
+  var track = document.getElementById('track'), tracker = document.getElementById('tracker'), tt = document.getElementById('tracker-t');
+  var stops = [].slice.call(track.querySelectorAll('.stop'));
   function show(i) {
-    row.style.setProperty('--p', i / 4);
-    lis.forEach(function (li, k) { li.className = k < i ? 'done' : (k === i ? 'now' : ''); });
-    money.className = 'money ' + states[i].cls;
-    mt.textContent = states[i].t;
+    var s = states[i];
+    track.style.setProperty('--pos', s.pos);
+    stops.forEach(function (st, k) { st.classList.toggle('lit', k <= s.lit); });
+    tracker.classList.toggle('paid', !!s.paid);
+    tt.textContent = s.t;
   }
   var co = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) show(+e.target.getAttribute('data-ch')); });
   }, { rootMargin: '-42% 0px -48% 0px' });
   chapters.forEach(function (c) { co.observe(c); });
-
+   
   /* menu: highlight the section in view */
   var links = [].slice.call(document.querySelectorAll('[data-spy]'));
   var so = new IntersectionObserver(function (es) {
