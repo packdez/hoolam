@@ -370,6 +370,9 @@ details p { padding: 0 20px 18px; color: var(--soft); }
 .zem .wheel { transform-box: fill-box; transform-origin: center; animation: spin .5s linear infinite; }
 .zem .jolt { animation: jolt .32s ease-in-out infinite alternate; }
 @keyframes jolt { to { transform: translateY(-2px); } }
+/* show only the farthest delivery rider */
+.zem { display: none; }
+.zem[style*="animation-duration:15s"] { display: inline; }
 
 footer { padding-block: 30px 40px; border-top: 1px solid var(--rule); }
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
